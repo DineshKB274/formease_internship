@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Court Reporting</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: orange;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    .toggle-text {
+      display: inline-block;
+      margin-left: 10px;
+    }
+
+    .additional-functionalities {
+      display: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Court Reporting</h1>
+
+    <div>
+    <span class="toggle-text">Will this matter plan to have a<br>Court Reporter? </span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="additional-functionalities">
+        <span class="toggle-text">Would you like an Arbitration Place<br>Court Reporter? </span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggle">
+            <span class="slider"></span>
+          </label>
+    </div>
+
+    
+
+
+  </div>
+
+  <div class="container">
+    <h1>Additional Features</h1>
+
+    <div>
+    <span class="toggle-text">Do you require Interpretation? </span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="additional-functionalities">
+        <span class="toggle-text">Would you like an Arbitration Place<br>Court Reporter? </span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggle">
+            <span class="slider"></span>
+          </label>
+    </div>
+  </div>
+
+  
+
+  <script>
+    const toggleSwitch = document.getElementById('toggle');
+    const additionalFunctionalities = document.querySelector('.additional-functionalities');
+    const additionalToggleSwitch = additionalFunctionalities.querySelector('input');
+  
+    toggleSwitch.addEventListener('change', () => {
+      additionalFunctionalities.style.display = toggleSwitch.checked ? 'block' : 'none';
+    });
+  
+    additionalToggleSwitch.addEventListener('change', () => {
+      const dropdownContainer = document.getElementById('dropdownContainer');
+  
+      if (additionalToggleSwitch.checked) {
+        // Create dropdown if not already created
+        if (!dropdownContainer) {
+          createDropdown();
+        }
+        // Show dropdown
+        dropdownContainer.style.display = 'block';
+      } else {
+        // Hide dropdown if additional toggle is unchecked
+        dropdownContainer.style.display = 'none';
+      }
+    });
+  
+    function createDropdown() {
+      // Create a dropdown container
+      const dropdownContainer = document.createElement('div');
+      dropdownContainer.id = 'dropdownContainer';
+      dropdownContainer.style.marginTop = '10px';
+  
+      // Create a paragraph for text above the dropdown
+      const textAboveDropdown = document.createElement('p');
+      textAboveDropdown.innerHTML = 'Is there a specific<br>Arbitration Place Court Reporter:';
+  
+      // Append the text above dropdown to the container
+      dropdownContainer.appendChild(textAboveDropdown);
+  
+      // Create a select element (dropdown) with a default option
+      const dropdown = document.createElement('select');
+      dropdown.style.width = '300px';
+      dropdown.style.height = '40px'; // Set the width of the dropdown (adjust as needed)
+  
+      // Add a default option with text "xyz"
+      const defaultOption = document.createElement('option');
+      defaultOption.text = 'Select AP Court Reporter';
+      defaultOption.value = ''; // You can set a value if needed
+      dropdown.add(defaultOption);
+  
+      // Add other options to the dropdown
+      const option1 = document.createElement('option');
+      option1.text = 'Option 1';
+      dropdown.add(option1);
+  
+      const option2 = document.createElement('option');
+      option2.text = 'Option 2';
+      dropdown.add(option2);
+  
+      // Append the dropdown to the container
+      dropdownContainer.appendChild(dropdown);
+  
+      // Append the container to the additional functionalities div
+      additionalFunctionalities.appendChild(dropdownContainer);
+    }
+
+    
+  
+  </script>
+  
+</body>
+</html>
